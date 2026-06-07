@@ -1,0 +1,25 @@
+# Mac system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Personal Health Data
+# Ignore everything in these directories
+raw/*
+wiki/conditions/*
+wiki/timeline/*
+wiki/labs_and_metrics/*
+wiki/research_cache/*
+ui/data/*
+
+# But keep the .gitkeep files so the directory structure is preserved in git
+!raw/.gitkeep
+!wiki/conditions/.gitkeep
+!wiki/timeline/.gitkeep
+!wiki/labs_and_metrics/.gitkeep
+!wiki/research_cache/.gitkeep
+!ui/data/.gitkeep
+
+# Ignore Node.js if they add tooling later
+node_modules/
+.npm

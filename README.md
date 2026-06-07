@@ -1,52 +1,35 @@
-# Open Source Patient Copilot Framework (OS-PCF)
+# Lumina: The Autonomous Patient Dossier
 
-An open-source blueprint and framework for building a self-updating, highly secure, AI-powered Patient Copilot.
+[![Status](https://img.shields.io/badge/Status-Beta-blue.svg)]()
+[![Architecture](https://img.shields.io/badge/Architecture-Set_And_Forget-orange.svg)]()
+[![Privacy](https://img.shields.io/badge/Privacy-Local_First-green.svg)]()
 
-This framework shifts personal healthcare management from passive RAG (Retrieval-Augmented Generation) to an **Active Patient Copilot**. It doesn't just index your documents; it actively cross-references your clinical data against standard-of-care guidelines, insurance constraints, and dietary requirements.
+Lumina is an open-source, multi-agent AI framework for personal health management. It uses Agentic IDEs (like Cursor, Windsurf, or Cline) to automatically ingest messy medical records, build a structured markdown knowledge graph, and compile it into a visual dashboard.
 
-## The Core Problem
-Healthcare navigation is incredibly complex. Patients face:
-1. **Health Literacy & Jargon:** Dense clinical notes that are hard to understand.
-2. **Financial Toxicity:** Complex insurance policies, prior authorizations, and hidden costs.
-3. **Fragmentation:** Data scattered across multiple providers and portals.
-4. **Safety & Standard of Care:** Unsure if a prescribed treatment aligns with modern, established guidelines.
+## 🧬 How It Works
 
-## The Solution: OS-PCF Architecture
+Lumina operates as a background intelligence engine that permanently organizes your data using a strict, zero-hallucination workflow.
 
-This framework divides your workspace into an immutable data layer and an active AI reasoning layer. Provide this entire folder structure to an Agentic IDE (like Cursor, Windsurf, or Antigravity) and it will become your dedicated Patient Advocate.
+```mermaid
+graph LR
+    A[Raw PDFs & Notes] -->|Ingested by AI| B(Markdown Wiki)
+    B -->|Self-Validated| C{JSON Engine}
+    C -->|Renders| D[Static Dashboard]
+```
 
-### 1. The Immutable Data Layer (`/raw`)
-Your ground truth. The AI reads from here but **never** edits or deletes files here.
-*   **`/raw/clinical/`**: Lab report PDFs, clinical visit summaries, wearable data exports, medical imaging.
-*   **`/raw/financial/`**: Insurance policy PDFs, Explanation of Benefits (EOBs), and medical bills.
+## 🚀 Getting Started
 
-### 2. The Patient State & Advocacy Layer (`/wiki`)
-The structured Knowledge Graph managed exclusively by the AI.
-*   **`dashboard.md`**: The central "Face Sheet" (active conditions, current medications, critical vitals). The AI keeps this updated on every ingestion.
-*   **`/wiki/conditions/`**: Individual files for specific diagnoses (e.g., `hypertension.md`).
-*   **`/wiki/timeline/`**: A chronological log of symptoms, doctor visits, and interventions.
-*   **`/wiki/lifestyle/`**: AI-generated diet and exercise plans that automatically check for food-drug interactions based on your current medications.
-*   **`/wiki/advocacy/`**: The output folder where the AI drafts insurance appeal letters, messages to providers, and Standard of Care verification reports.
+Lumina is a **Self-Bootstrapping, Set-And-Forget Workspace**. 
 
-### 3. The Copilot Brain (`.agentrules`)
-The master instruction set. This file is embedded in the root directory and explicitly instructs the AI on *how* to operate. It mandates that the AI must always cite sources, never delete raw data, and actively check for contradictions.
+1. **Download** this repository.
+2. **Open** the folder in *any* Agentic IDE (Cursor, Windsurf, Copilot, Cline). Lumina ships with universal pointers that instruct the IDE out-of-the-box.
+3. **Drop Files**: Put your medical PDFs in the `/raw/` folder.
+4. **Command the AI**: Tell the AI to "Ingest the new files."
+5. **Read**: The system will autonomously build the `/wiki/` and update the dashboard. For more details, read `USER_MANUAL.md`.
 
-## Active Workflows (What the AI actually does)
+## 🔒 Privacy & Safety First
+- **Zero Hallucination Guarantee:** The AI is strictly prompted to use a Provenance Protocol. It must cite the exact raw file for every metric it records.
+- **Local First:** Your data never leaves your computer. Ensure your AI tools are configured with **Zero Data Retention** policies.
 
-When you drop a new lab report or insurance policy into `/raw`, the system executes:
-
-1.  **Ingestion & Translation:** Converts clinical jargon into plain English and updates the `dashboard.md`.
-2.  **Standard of Care Verification:** The AI autonomously searches medical databases (PubMed, clinical guidelines) to verify that a new prescription or diagnosis aligns with established medical consensus. Output is saved to `/wiki/advocacy/treatment_verification.md`.
-3.  **Diet & Lifestyle Synthesis:** Checks for new food-drug interactions and updates your `/wiki/lifestyle/` plans accordingly.
-4.  **Insurance Feasibility:** Cross-references proposed treatments against your policies in `/raw/financial/` to flag potential out-of-pocket costs.
-5.  **Medical Linting:** Continuously scans the entire `/wiki` for conflicting diagnoses, interacting medications, or stale claims, logging them for human review.
-
-## Privacy & Security First
-*   **Local-First / Private Repo:** Keep this repository local or in a strictly private, encrypted Git repo.
-*   **Zero Data Retention:** Ensure your AI provider has a zero-data-retention policy so your Protected Health Information (PHI) is not used for model training. Where possible, use local open-weight models.
-
-## How to Deploy
-1. Clone or download this repository structure.
-2. Drop your medical files into the appropriate `/raw/clinical/` and `/raw/financial/` folders.
-3. Open the repository in your Agentic IDE or point your CLI AI agent at this folder.
-4. Prompt the AI: *"Read the `.agentrules`. Scan the `/raw` directories and build my initial `/wiki/dashboard.md`."*
+## 🌟 Acknowledgments
+This open-source project was taken inspiration from Andrej Karpathy's [bio prompt gist](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f).
